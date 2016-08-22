@@ -15,7 +15,7 @@ void printArray(int arr[],int n)
         cout<<arr[i]<<",";
     
 }
-
+// Sorter
 void insertsort(int arr[],int n)
 {
     int i,j,key;
@@ -34,7 +34,7 @@ void insertsort(int arr[],int n)
 }
 
 int main() {
-	// Sorter
+	
 	int arr[]={4,10,2,1,5};
 	int n = sizeof(arr)/sizeof(arr[0]);
 	insertsort(arr,n);
