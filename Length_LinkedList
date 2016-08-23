@@ -1,0 +1,159 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node * next;
+};
+
+void push(struct node ** headref, int data)
+{
+    struct node *new_node = (struct node*)malloc(sizeof(struct node));
+    new_node -> data = data;
+    new_node -> next = (*headref);
+    (*headref) = new_node ; 
+}
+
+void insertAfter(struct node *prev_node, int data)
+{
+  if(prev_node == NULL)
+  {
+      printf("Previous Node Cannot be Null");
+      return;
+  }
+  
+  struct node *new_node = (struct node*)malloc(sizeof(struct node));
+  new_node -> data = data;
+  new_node -> next = prev_node -> next ;
+  prev_node -> next = new_node;
+  
+}
+void append(struct node **head_node, int data)
+{
+    struct node *new_node = (struct node*)malloc(sizeof(struct node));
+    struct node *last_node =  NULL;
+    last_node = *head_node;
+    new_node->data = data;
+    new_node -> next = NULL;
+    while(last_node -> next != NULL)
+    {
+        last_node = last_node ->next;
+    }
+    last_node -> next = new_node;
+}
+void printList(struct node *node)
+{
+    printf("\n");
+    while(node != NULL)
+    {
+        printf("%d",node->data);
+        printf("\n");
+        node=node->next;
+    }
+}
+
+void push1(struct node ** headref, int data)
+{
+    struct node *new_node = (struct node*)malloc(sizeof(struct node));
+    new_node -> data = data;
+    new_node -> next = (*headref);
+    (*headref) = new_node ; 
+}
+
+void deleteList(struct node ** head_ref, int pos)
+{
+    struct node*temp = *head_ref;
+    int i=0;
+    
+    if(*head_ref ==NULL)
+    {
+        return;
+    }
+    if(pos == 0)
+    {
+    *head_ref = temp->next;
+    free(temp);
+    return;
+    }
+    
+    for(i=0;i<pos-1&&temp!=NULL;i++)
+    {
+        temp = temp->next;
+    }
+    
+    if(temp==NULL || temp->next ==NULL)
+    {
+        return;
+    }
+    
+    struct node* next = temp->next->next;
+    
+    free(temp->next);
+    
+    temp->next = next;
+    /*if(temp !=  NULL && temp->data == key)
+    {
+        *head_ref = temp->next;
+        free(temp);
+        return;
+    }
+    
+    while(temp != NULL && temp -> data != key)
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+    
+    if(temp == NULL)
+    return;
+    
+     prev -> next = temp -> next;
+    free(temp);*/
+    
+}
+
+int iterativeCounter(struct node* head_ref)
+{
+    int count = 0;
+    struct node* temp = head_ref;
+    while(temp != NULL)
+    {
+        count++;
+        temp=temp->next;
+    }
+    return count;
+}
+
+int recursiveCounter(struct node* head_ref)
+{
+  
+    if(head_ref == NULL)
+    {
+        return 0;
+    }
+    else
+    {
+       
+        return 1+recursiveCounter(head_ref->next);
+    }
+}
+
+int main(void) {
+	// your code goes here
+	struct node * head = NULL;
+	push(&head,7);
+	push(&head,1);
+	push(&head,2);
+    push(&head,50);
+    push(&head,60);
+    push(&head,70);
+	printf("created the list");
+	printList(head);
+	printf("Counter\n");
+	printf("%d",recursiveCounter(head));
+	//deleteList(&head,3);
+	//printList(head);
+	return 0;
+}
+
