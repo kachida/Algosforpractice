@@ -69,9 +69,17 @@ if(prevX != NULL)
 {
 prevX->next = currY;
 }
+else
+{
+    *head_ref = currY;
+}
 if(prevY != NULL)
 {
 prevY->next = currX;
+}
+else
+{
+    *head_ref = currX;
 }
 
 //setting current-> next values
@@ -99,7 +107,7 @@ int main() {
 //	printList(head);
     //Swapping Nodes with changing the data
     cout<<"After swapping";
-    swapNode(&head,30,50);
+    swapNode(&head,10,50);
     cout<<"\n"<<"\n";
         printList(head);
 
