@@ -1,0 +1,139 @@
+/*************************************************************************************
+ **************Program Name - Reverse A Linked List***********************************
+ * ************          Author - Kannappan         **********************************
+ * **********************************************************************************/
+
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+
+
+struct node
+{
+    int data;
+    struct node *  next;
+};
+
+void printList(struct node *n)
+{
+    while(n != NULL)
+    {
+      cout<<n->data<<"\n";
+        
+        n = n -> next;
+    }
+}
+
+void listPush(struct node ** headref, int data)
+{
+    struct node * new_node = (struct node*)malloc(sizeof(struct node));
+    new_node -> data = data;
+    new_node -> next = (*headref);
+   // cout<<"data "<<data<<" "<<"*headref value "<<(*headref)<<"\n";
+   // cout<<" new node next value " << (new_node)<<"\n";
+    
+    (*headref) = new_node ; 
+}
+
+void deleteList(struct node **headref)
+{
+    struct node *temp = NULL;
+    temp = *headref;
+    (*headref)=((*headref)->next);
+    cout<<"deleted item is"<<(temp->data)<<"\n";
+    free(temp);
+    
+    
+    
+}
+
+void swapNode(struct node **head_ref,int x,int y)
+{
+    
+   // Nothing to do if x and y are same
+   if (x == y) return;
+ 
+   struct node *prevX, *currX = *head_ref;
+
+while(currX && currX->data !=x)
+{
+prevX = currX;
+currX = currX->next;
+}
+
+struct node *prevY, *currY = *head_ref;
+
+while(currY && currY-> data != y)
+{
+prevY = currY;
+currY = currY->next;
+}
+
+//setting previous link values
+
+if(prevX != NULL)
+{
+prevX->next = currY;
+}
+else
+{
+    *head_ref = currY;
+}
+if(prevY != NULL)
+{
+prevY->next = currX;
+}
+else
+{
+    *head_ref = currX;
+}
+
+//setting current-> next values
+
+struct node * temp = currX->next;
+currX->next = currY->next;
+currY->next = temp;
+
+}
+ void reverseList(struct node **head_ref)
+ {
+     struct node *prev = NULL;
+     struct node  *next;
+
+     while(*head_ref != NULL)
+     {
+         
+         next = (*head_ref)->next;
+         (*head_ref)->next = prev;
+         prev = (*head_ref);
+         (*head_ref) = next;
+         
+     }
+      *head_ref = prev;
+ }
+int main() {
+	// your code goes here
+	// your code goes here
+	struct node * head = NULL;
+    listPush(&head,10);
+    listPush(&head,20);
+    listPush(&head,30);
+    listPush(&head,40);
+    listPush(&head,50);
+    listPush(&head,60);
+    cout<<"After Insertion"<<"\n";
+    printList(head);
+ //   deleteList(&head);
+ //   cout<<"After Deletion"<<"\n";
+//	printList(head);
+    //Swapping Nodes with changing the data
+ //   cout<<"After swapping";
+    //swapNode(&head,10,50);
+  //  cout<<"After \n"<<"\n";
+  reverseList(&head);
+  cout<<"After Reversing the List"<<"\n";
+        printList(head);
+
+	return 0;
+}
