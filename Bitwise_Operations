@@ -1,0 +1,23 @@
+/***** Bitwise Operation Practice*********/
+
+#include <stdio.h>
+
+int main() {
+	// your code goes here
+	unsigned int a = 60 ;
+	unsigned int b =13;
+	int c=0;
+	c = a & b;
+	printf("Bitwise And Operation : %d\n",c);
+	c=a|b;
+	printf("Bitwise Or Operation : %d\n",c);
+	c=a^b;
+	printf("Bitwise XOR Operation : %d\n",c);
+	c=~a;
+	printf("Bitwise Complementary Operation : %d\n",c);
+	c=a<<2;
+	printf("Bitwise Left Shift Operation : %d\n",c);
+	c=a>>2;
+	printf("Bitwise Right Shift Operation : %d\n",c);
+	return 0;
+}
