@@ -1,0 +1,18 @@
+#include<stdio.h>
+int add(int a, int b)
+{
+    return a+b;
+}
+int multiply(int a,int b)
+{
+    return a*b;
+}
+int main() {
+	 unsigned int ch = 1 ;
+  int (*ptr_array[])(int,int) = {add,multiply};
+  printf("Enter your choice : ");
+  scanf("%d",&ch);
+ int result = (*ptr_array[ch])(10,20);
+ printf("The Result is : %d",result);
+}
+
