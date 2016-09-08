@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<math.h>
+double sincalc(double (*fun_ptr)(double),double val)
+{
+return (*fun_ptr)(val);
+}
+
+int main()
+{
+double (*fun_ptr)(double);
+fun_ptr=sin;
+double result = sincalc(fun_ptr,10);
+printf("Sin of 10 is : %f",result);
+return 0;
+}
